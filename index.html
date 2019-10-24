@@ -48,14 +48,14 @@
 
         // let queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=trilogy";
 
-        var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=9L6z6nm2Tcgeb0fAdLw33tIxNChdn84I&q=" + animal +
+        let queryURL = "https://api.giphy.com/v1/gifs/search?api_key=9L6z6nm2Tcgeb0fAdLw33tIxNChdn84I&q=" + animal +
           "&limit=5&offset=2&rating=G&lang=en"
 
         $.ajax({
           url: queryURL,
           method: "GET"
         }).then(function (response) {
-          var results = response.data;
+          let results = response.data;
           //use .html to show clicked animal only
           $("#gifs-appear-here").html(results);
 
@@ -63,24 +63,47 @@
           // $("#gifs-appear-here").prepend(results);
 
           for (var i = 0; i < results.length; i++) {
-            var gifDiv = $("<div>");
+            let gifDiv = $("<div>");
 
-            var rating = results[i].rating;
+            let rating = results[i].rating;
 
-            var p = $("<p>").text("Rating: " + rating);
+            let p = $("<p>").text("Rating: " + rating);
 
-            var animalImage = $("<img>");
+            let animalImage = $("<img>");
+            animalImage.addClass("gif");
+
             animalImage.attr("src", results[i].images.fixed_height.url);
-
-
+            // animalImage.attr("src", results[i].images.fixed_height_still.url);
             gifDiv.prepend(p);
             // !!!!!!!!
+            // gifDiv.addClass("gifyDivClass");
             gifDiv.prepend(animalImage);
             //prepend-add gifDiv to the front the p
-            $("#gifs-appear-here").prepend(gifDiv);
+            $("#gifs-appear-here").append('<img class="gif" src="' + results[i].images.fixed_height_still.url +
+              '">');
+
+            //!!!!!!!!!
+            $('body').on('click', '.gif', function () {
+              var src = $(this).attr("src");
+              if ($(this).hasClass('playing')) {
+                //stop
+                $(this).attr('src', src.replace(/\.gif/i, "_s.gif"))
+                $(this).removeClass('playing');
+              } else {
+                //play
+                $(this).addClass('playing');
+                $(this).attr('src', src.replace(/\_s.gif/i, ".gif"))
+              }
+            });
+
+            //!!!!!!!!!
           }
         });
-      }
+      } //end displayMovieInfo Function
+
+
+
+
       // Function for displaying animal data
       function renderButtons() {
         // Deleting the buttons prior to adding new animals

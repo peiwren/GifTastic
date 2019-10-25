@@ -11,6 +11,14 @@
     input {
       margin: 10px;
     }
+
+    p {
+      color: blueviolet
+    }
+
+    img {
+      margin-right: 30px
+    }
   </style>
 </head>
 
@@ -28,8 +36,8 @@
     </form>
 
     <div>
-      <p id="title"></p>
-      <p id="gifs-appear-here"></p>
+      <div id="gifs-appear-here"></div>
+
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -38,7 +46,7 @@
       let animals = ["cat", "birds", "frog"];
       // Function for dumping the JSON content for each button into the div
 
-      function displayMovieInfo(evt) {
+      function displayGify(evt) {
         // YOUR CODE GOES HERE!!! HINT: You will need to create a new div to hold the JSON.
         // console.log(evt.target.dataset.name)
         // console.log(evt)
@@ -56,7 +64,7 @@
           method: "GET"
         }).then(function (response) {
           let results = response.data;
-          //use .html to show clicked animal only
+          //!!!!!!!!!use .html to show clicked animal only!!!!!!!
           $("#gifs-appear-here").html(results);
 
           // .prepend gives all the gifs
@@ -72,15 +80,14 @@
             let animalImage = $("<img>");
             animalImage.addClass("gif");
 
+
             animalImage.attr("src", results[i].images.fixed_height.url);
             // animalImage.attr("src", results[i].images.fixed_height_still.url);
-            gifDiv.prepend(p);
-            // !!!!!!!!
-            // gifDiv.addClass("gifyDivClass");
-            gifDiv.prepend(animalImage);
-            //prepend-add gifDiv to the front the p
-            $("#gifs-appear-here").append('<img class="gif" src="' + results[i].images.fixed_height_still.url +
-              '">');
+
+            let still = animalImage.attr("src", results[i].images.fixed_height_still.url);
+
+            $("#gifs-appear-here").append(still);
+            $("#gifs-appear-here").append(p);
 
             //!!!!!!!!!
             $('body').on('click', '.gif', function () {
@@ -137,8 +144,8 @@
         renderButtons();
       });
 
-      // Generic function for displaying the movieInfo
-      $(document).on("click", ".lovelyAnimal", displayMovieInfo);
+      // Generic function for displaying the gify
+      $(document).on("click", ".lovelyAnimal", displayGify);
       // Calling the renderButtons function to display the intial buttons
       renderButtons();
     </script>

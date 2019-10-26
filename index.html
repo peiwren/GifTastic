@@ -4,152 +4,270 @@
 <head>
   <meta charset="utf-8">
   <title>gify</title>
+  <!-- google font -->
+  <link href="https://fonts.googleapis.com/css?family=Sofia&display=swap" rel="stylesheet">
+  <!-- bootstrap css -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+
+  <!-- bootstrap js -->
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+  <!-- jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <title>trivia</title>
   <style type="text/css">
-    button,
+    /* button,
     div,
     form,
     input {
       margin: 10px;
+    } */
+
+
+    body {
+      width: 100%;
+      background: #4f6680;
+
+    }
+
+    h1 {
+      font-family: 'Sofia', cursive;
+      color: white;
+      font-size: 5em;
+      margin: 30px;
+    }
+
+    input {
+      width: 6em;
+    }
+
+    .container {
+      width: 600px;
+      /* height: 165vh; */
+
+      /* border: 3px solid black; */
+      text-align: center;
+      vertical-align: middle;
+      */
     }
 
     p {
-      color: blueviolet
+      margin-top: -38px;
+      margin-left: 20px;
+      color: black;
+      clear: both;
+      text-decoration: overline;
+      text-decoration-line: underline;
+      text-decoration-color: black;
     }
 
-    img {
-      margin-right: 30px
+    label {
+      background: lightcyan;
+      padding: 3px 9px;
+      margin-right: -8px;
+
+    }
+
+    #animal-input {
+      width: auto;
+      padding: 3px;
+    }
+
+    input {
+      border: none;
+      padding: 3px;
+      text-decoration: underline;
+    }
+
+    /* Cited: https://bootsnipp.com/snippets/p1qAD */
+    /* This following imge grid style makes responsive masonry gallery  */
+    .gal {
+      -webkit-column-count: 3;
+      /* Chrome, Safari, Opera */
+      -moz-column-count: 3;
+      /* Firefox */
+      column-count: 3;
+    }
+
+    ::-webkit-input-placeholder {
+      text-align: center;
+    }
+
+    :-moz-placeholder {
+      /* Firefox 18- */
+      text-align: center;
+    }
+
+    ::-moz-placeholder {
+      /* Firefox 19+ */
+      text-align: center;
+    }
+
+    :-ms-input-placeholder {
+      text-align: center;
+    }
+
+    .gal img {
+      width: 100%;
+      padding: 7px 0;
+      border-bottom: 50px solid pink;
+
+    }
+
+    @media (max-width: 500px) {
+
+      .gal {
+        -webkit-column-count: 1;
+        /* Chrome, Safari, Opera */
+        -moz-column-count: 1;
+        /* Firefox */
+        column-count: 1;
+      }
+
     }
   </style>
 </head>
 
 <body>
   <div class="container">
-    <h1>gify</h1>
+    <h1>GifyTastic</h1>
 
     <!-- Buttons will Get Dumped Here -->
     <div id="buttons-view"></div>
     <form id="animals-form">
-      <label for="animals-input">Add a animal!</label>
-      <input type="text" id="animal-input"><br>
+      <!-- <label for="animals-input">Add an animal!</label><br> -->
+      <input type="text" id="animal-input" placeholder="Type an animal name"><br>
       <!-- Button triggers new animal to be added -->
       <input id="add-animal" type="submit" value="Add">
     </form>
 
-    <div>
-      <div id="gifs-appear-here"></div>
+    <div class="col-md-12">
+      <div class="row">
+        <div class="column">
+          <div id="gifs-appear-here" class="gal">
+          </div>
 
+        </div>
+
+
+      </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript">
-      // Initial array of animals
-      let animals = ["cat", "birds", "frog"];
-      // Function for dumping the JSON content for each button into the div
-
-      function displayGify(evt) {
-        // YOUR CODE GOES HERE!!! HINT: You will need to create a new div to hold the JSON.
-        // console.log(evt.target.dataset.name)
-        // console.log(evt)
-
-        let animal = $(this).attr("data-name")
-        //event.preventDefault();
-
-        // let queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=trilogy";
-
-        let queryURL = "https://api.giphy.com/v1/gifs/search?api_key=9L6z6nm2Tcgeb0fAdLw33tIxNChdn84I&q=" + animal +
-          "&limit=5&offset=2&rating=G&lang=en"
-
-        $.ajax({
-          url: queryURL,
-          method: "GET"
-        }).then(function (response) {
-          let results = response.data;
-          //!!!!!!!!!use .html to show clicked animal only!!!!!!!
-          $("#gifs-appear-here").html(results);
-
-          // .prepend gives all the gifs
-          // $("#gifs-appear-here").prepend(results);
-
-          for (var i = 0; i < results.length; i++) {
-            let gifDiv = $("<div>");
-
-            let rating = results[i].rating;
-
-            let p = $("<p>").text("Rating: " + rating);
-
-            let animalImage = $("<img>");
-            animalImage.addClass("gif");
-
-
-            animalImage.attr("src", results[i].images.fixed_height.url);
-            // animalImage.attr("src", results[i].images.fixed_height_still.url);
-
-            let still = animalImage.attr("src", results[i].images.fixed_height_still.url);
-
-            $("#gifs-appear-here").append(still);
-            $("#gifs-appear-here").append(p);
-
-            //!!!!!!!!!
-            $('body').on('click', '.gif', function () {
-              var src = $(this).attr("src");
-              if ($(this).hasClass('playing')) {
-                //stop
-                $(this).attr('src', src.replace(/\.gif/i, "_s.gif"))
-                $(this).removeClass('playing');
-              } else {
-                //play
-                $(this).addClass('playing');
-                $(this).attr('src', src.replace(/\_s.gif/i, ".gif"))
-              }
-            });
-
-            //!!!!!!!!!
-          }
-        });
-      } //end displayMovieInfo Function
-
-
-
-
-      // Function for displaying animal data
-      function renderButtons() {
-        // Deleting the buttons prior to adding new animals
-        // (this is necessary otherwise you will have repeat buttons)
-        $("#buttons-view").empty();
-        // Looping through the array of animals
-        for (let i = 0; i < animals.length; i++) {
-
-          // Then dynamicaly generating buttons for each animal in the array
-          // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
-          let a = $("<button>");
-          // Adding a class of animal to our button
-          a.addClass("lovelyAnimal");
-          // Adding a data-attribute
-          a.attr("data-name", animals[i]);
-          // Providing the initial button text
-          a.text(animals[i]);
-          // Adding the button to the buttons-view div
-          $("#buttons-view").append(a);
-        }
-      }
-      // This function handles events where one button is clicked
-      $("#add-animal").on("click", function (event) {
-        event.preventDefault();
-
-        // This line grabs the input from the textbox
-        let animal = $("#animal-input").val().trim();
-        // The animal from the textbox is then added to our array
-        animals.push(animal);
-        // Calling renderButtons which handles the processing of our animal array
-        renderButtons();
-      });
-
-      // Generic function for displaying the gify
-      $(document).on("click", ".lovelyAnimal", displayGify);
-      // Calling the renderButtons function to display the intial buttons
-      renderButtons();
-    </script>
   </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    // Initial array of animals
+    let animals = ["cute cat", "cute birds", "cute frog"];
+    // Function for dumping the JSON content for each button into the div
+
+    function displayGify(evt) {
+      // YOUR CODE GOES HERE!!! HINT: You will need to create a new div to hold the JSON.
+      // console.log(evt.target.dataset.name)
+      // console.log(evt)
+
+      let animal = $(this).attr("data-name")
+      //event.preventDefault();
+
+      // let queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=trilogy";
+
+      let queryURL = "https://api.giphy.com/v1/gifs/search?api_key=9L6z6nm2Tcgeb0fAdLw33tIxNChdn84I&q=" + animal +
+        "&limit=5&offset=2&rating=G&lang=en"
+
+      $.ajax({
+        url: queryURL,
+        method: "GET"
+      }).then(function (response) {
+        let results = response.data;
+        //!!!!!!!!!use .html to show clicked animal only!!!!!!!
+        $("#gifs-appear-here").html(results);
+
+        // .prepend gives all the gifs
+        // $("#gifs-appear-here").prepend(results);
+
+        for (var i = 0; i < results.length; i++) {
+          let gifDiv = $("<div>");
+
+          let rating = results[i].rating;
+
+          let p = $("<p>").text("Rating: " + rating + " ");
+
+          let animalImage = $("<img>");
+          animalImage.addClass("gif");
+          // animalImage.addClass("img-fluid");
+          // p.addClass("img-fluid");
+
+          animalImage.attr("src", results[i].images.fixed_height.url);
+          // animalImage.attr("src", results[i].images.fixed_height_still.url);
+
+          let still = animalImage.attr("src", results[i].images.fixed_height_still.url);
+
+          $("#gifs-appear-here").append(still);
+          $("#gifs-appear-here").append(p);
+
+          //!!!!!!!!!
+          $('body').on('click', '.gif', function () {
+            var src = $(this).attr("src");
+            if ($(this).hasClass('playing')) {
+              //stop
+              $(this).attr('src', src.replace(/\.gif/i, "_s.gif"))
+              $(this).removeClass('playing');
+            } else {
+              //play
+              $(this).addClass('playing');
+              $(this).attr('src', src.replace(/\_s.gif/i, ".gif"))
+            }
+          });
+
+          //!!!!!!!!!
+        }
+      });
+    } //end displayMovieInfo Function
+
+
+
+
+    // Function for displaying animal data
+    function renderButtons() {
+      // Deleting the buttons prior to adding new animals
+      // (this is necessary otherwise you will have repeat buttons)
+      $("#buttons-view").empty();
+      // Looping through the array of animals
+      for (let i = 0; i < animals.length; i++) {
+
+        // Then dynamicaly generating buttons for each animal in the array
+        // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
+        let a = $("<button>");
+        // Adding a class of animal to our button
+        a.addClass("lovelyAnimal");
+        // Adding a data-attribute
+        a.attr("data-name", animals[i]);
+        // Providing the initial button text
+        a.text(animals[i]);
+        // Adding the button to the buttons-view div
+        $("#buttons-view").append(a);
+      }
+    }
+    // This function handles events where one button is clicked
+    $("#add-animal").on("click", function (event) {
+      event.preventDefault();
+
+      // This line grabs the input from the textbox
+      let animal = $("#animal-input").val().trim();
+      // The animal from the textbox is then added to our array
+      animals.push(animal);
+      // Calling renderButtons which handles the processing of our animal array
+      renderButtons();
+    });
+
+    // Generic function for displaying the gify
+    $(document).on("click", ".lovelyAnimal", displayGify);
+    // Calling the renderButtons function to display the intial buttons
+    renderButtons();
+  </script>
+
 </body>
 
 </html>

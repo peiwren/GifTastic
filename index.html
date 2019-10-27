@@ -6,10 +6,10 @@
   <title>gify</title>
   <!-- google font -->
   <link href="https://fonts.googleapis.com/css?family=Sofia&display=swap" rel="stylesheet">
+
   <!-- bootstrap css -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 
   <!-- bootstrap js -->
@@ -17,26 +17,26 @@
 
   <!-- jQuery -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
   <title>trivia</title>
+
   <style type="text/css">
     body {
       width: 100%;
       background-image: linear-gradient(-50deg, rgb(12, 12, 15), #4f6680);
-      /* background-image: linear-gradient(-90deg, #13181d, #4f6680)); */
-      /* background: #4f6680; */
-
     }
 
     .wrapper {
       width: 100%;
       max-width: 980px;
-      height: 900px;
+      height: 1200px;
       background: rgb(233, 235, 245);
       margin: 0 auto;
     }
 
     .container {
       width: 70%;
+      height: 1200px;
       text-align: center;
       vertical-align: middle;
     }
@@ -44,13 +44,9 @@
     h1 {
       text-align: center;
       font-family: 'Sofia', cursive;
-      color: yellowgreen;
+      color: rgb(25, 248, 136);
       font-size: 5em;
       margin: 50px auto;
-    }
-
-    input {
-      width: 6em;
     }
 
     p {
@@ -60,8 +56,8 @@
       clear: both;
     }
 
-
     button {
+      font-weight: 500;
       padding: 20px 39px;
       width: 120px;
       text-align: center;
@@ -69,6 +65,7 @@
       vertical-align: middle;
       margin-right: 10px;
       margin-bottom: 10px;
+      background-color: rgb(154, 203, 233);
     }
 
     .btn-outline-info {
@@ -97,6 +94,7 @@
     }
 
     #add-animal {
+      width: 120px;
       color: white;
       margin-left: -10px;
       margin-bottom: 50px;
@@ -107,7 +105,7 @@
     }
 
     /* Cited: https://bootsnipp.com/snippets/p1qAD */
-    /* This following imge grid style makes responsive masonry gallery  */
+    /* The following image grid makes responsive masonry gallery */
     .gal {
       -webkit-column-count: 3;
       /* Chrome, Safari, Opera */
@@ -140,8 +138,7 @@
       border-bottom: 50px solid #4f6680;
     }
 
-    @media (max-width: 500px) {
-
+    @media only screen and(max-width: 500px) {
       .gal {
         -webkit-column-count: 1;
         /* Chrome, Safari, Opera */
@@ -149,18 +146,19 @@
         /* Firefox */
         column-count: 1;
       }
-
     }
   </style>
 </head>
 
 <body>
-
   <h1>GifyTastic</h1>
   <div class="wrapper">
+
     <div class="container">
+
       <!-- Buttons will be added here -->
       <div id="buttons-view"></div>
+
       <form id="animals-form">
         <label for="animals-input" id="addlabel">Add an animal!</label><br>
         <input type="text" id="animal-input" placeholder="Type an animal name">
@@ -168,57 +166,37 @@
         <input id="add-animal" type="submit" value="Add">
       </form>
 
-      <div class="col-md-12">
-        <div class="row">
-          <div class="column">
-            <div id="gifs-appear-here" class="gal">
-            </div>
+      <div class="row">
+        <div class="col-md-12 column">
+          <!-- <div class="column"> -->
 
+          <div id="gifs-appear-here" class="gal">
           </div>
-
 
         </div>
       </div>
     </div>
-
   </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <!-- Script -->
   <script type="text/javascript">
     // Initial array of animals
     let animals = ["Cat", "Turtle", "Frog", "Dog", "Turkey", "Bear", "Lion", "Panda", "Pig"];
+
     // Function for dumping the JSON content for each button into the div
-
     function displayGify(evt) {
-      // YOUR CODE GOES HERE!!! HINT: You will need to create a new div to hold the JSON.
-      // console.log(evt.target.dataset.name)
-      // console.log(evt)
-
       let animal = $(this).attr("data-name")
-      //event.preventDefault();
-
-      // let queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=trilogy";
-
 
       let queryURL = "https://api.giphy.com/v1/gifs/search?api_key=9L6z6nm2Tcgeb0fAdLw33tIxNChdn84I&q=" + animal +
         "&limit=5&offset=0&rating=G&lang=en"
-
-
-
-
-
-
-
 
       $.ajax({
         url: queryURL,
         method: "GET"
       }).then(function (response) {
         let results = response.data;
-        //!!!!!!!!!use .html to show clicked animal only!!!!!!!
-        $("#gifs-appear-here").html(results);
 
-        // .prepend gives all the gifs
-        // $("#gifs-appear-here").prepend(results);
+        $("#gifs-appear-here").html(results);
 
         for (var i = 0; i < results.length; i++) {
           let gifDiv = $("<div>");
@@ -229,19 +207,16 @@
 
           let animalImage = $("<img>");
           animalImage.addClass("gif");
-          // animalImage.addClass("img-fluid");
-          // p.addClass("img-fluid");
 
           animalImage.attr("src", results[i].images.fixed_height.url);
-          // animalImage.attr("src", results[i].images.fixed_height_still.url);
 
-          // let still = animalImage.attr("src", results[i].images.fixed_height_still.url);
           let still = animalImage.attr("src", results[i].images.fixed_width_still.url);
 
           $("#gifs-appear-here").append(still);
           $("#gifs-appear-here").append(p);
 
-          //!!!!!!!!!
+          //Cited:https://stackoverflow.com/questions/44298501/how-to-pause-and-start-gif-using-jquery-ajax
+          //Line 218-230 pause and play gif
           $('body').on('click', '.gif', function () {
             var src = $(this).attr("src");
             if ($(this).hasClass('playing')) {
@@ -254,14 +229,9 @@
               $(this).attr('src', src.replace(/\_s.gif/i, ".gif"))
             }
           });
-
-          //!!!!!!!!!
-        }
+        } //end for loop
       });
-    } //end displayMovieInfo Function
-
-
-
+    } //end displayGify function
 
     // Function for displaying animal data
     function renderButtons() {
@@ -270,11 +240,10 @@
       $("#buttons-view").empty();
       // Looping through the array of animals
       for (let i = 0; i < animals.length; i++) {
-
         // Then dynamicaly generating buttons for each animal in the array
         // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
         let a = $("<button>");
-        // Adding a class of animal to our button
+        // Adding a class of animal to the button
         a.addClass("lovelyAnimal");
         // Adding a data-attribute
         a.attr("data-name", animals[i]);
@@ -287,16 +256,15 @@
     // This function handles events where one button is clicked
     $("#add-animal").on("click", function (event) {
       event.preventDefault();
-
-      // This line grabs the input from the textbox
+      // This line grabs the input from the textbox and trim any white space
       let animal = $("#animal-input").val().trim();
-      // The animal from the textbox is then added to our array
+      // The animal from the textbox is then added to the array
       animals.push(animal);
-      // Calling renderButtons which handles the processing of our animal array
+      // Calling renderButtons which handles the processing of the animal array
       renderButtons();
     });
 
-    // Generic function for displaying the gify
+    // Function for displaying the gify
     $(document).on("click", ".lovelyAnimal", displayGify);
     // Calling the renderButtons function to display the intial buttons
     renderButtons();

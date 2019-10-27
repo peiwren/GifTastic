@@ -19,67 +19,91 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <title>trivia</title>
   <style type="text/css">
-    /* button,
-    div,
-    form,
-    input {
-      margin: 10px;
-    } */
-
-
     body {
       width: 100%;
-      background: #4f6680;
+      background-image: linear-gradient(-50deg, rgb(12, 12, 15), #4f6680);
+      /* background-image: linear-gradient(-90deg, #13181d, #4f6680)); */
+      /* background: #4f6680; */
 
     }
 
+    .wrapper {
+      width: 100%;
+      max-width: 980px;
+      height: 900px;
+      background: rgb(233, 235, 245);
+      margin: 0 auto;
+    }
+
+    .container {
+      width: 70%;
+      text-align: center;
+      vertical-align: middle;
+    }
+
     h1 {
+      text-align: center;
       font-family: 'Sofia', cursive;
-      color: white;
+      color: yellowgreen;
       font-size: 5em;
-      margin: 30px;
+      margin: 50px auto;
     }
 
     input {
       width: 6em;
     }
 
-    .container {
-      width: 600px;
-      /* height: 165vh; */
-
-      /* border: 3px solid black; */
-      text-align: center;
-      vertical-align: middle;
-      */
-    }
-
     p {
       margin-top: -38px;
       margin-left: 20px;
-      color: black;
+      color: white;
       clear: both;
-      text-decoration: overline;
-      text-decoration-line: underline;
-      text-decoration-color: black;
     }
 
-    label {
-      background: lightcyan;
-      padding: 3px 9px;
-      margin-right: -8px;
 
+    button {
+      padding: 20px 39px;
+      width: 120px;
+      text-align: center;
+      display: table-cell;
+      vertical-align: middle;
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+
+    .btn-outline-info {
+      color: rgb(5, 5, 17);
+      border-color: rgb(5, 5, 17);
+
+    }
+
+    #addlabel {
+      font-size: 2em;
+      font-weight: 500;
+      color: rgb(5, 5, 17);
+      margin-top: 39px;
     }
 
     #animal-input {
-      width: auto;
-      padding: 3px;
+      margin-top: 0;
+      width: 60%;
+      height: 60px;
+      padding: 30px;
     }
 
     input {
       border: none;
       padding: 3px;
-      text-decoration: underline;
+    }
+
+    #add-animal {
+      color: white;
+      margin-left: -10px;
+      margin-bottom: 50px;
+      height: 60px;
+      background: rgb(25, 80, 80);
+      background: rgb(143, 28, 76);
+      padding: 10px;
     }
 
     /* Cited: https://bootsnipp.com/snippets/p1qAD */
@@ -111,10 +135,9 @@
     }
 
     .gal img {
-      width: 100%;
+      width: 105%;
       padding: 7px 0;
-      border-bottom: 50px solid pink;
-
+      border-bottom: 50px solid #4f6680;
     }
 
     @media (max-width: 500px) {
@@ -132,27 +155,29 @@
 </head>
 
 <body>
-  <div class="container">
-    <h1>GifyTastic</h1>
 
-    <!-- Buttons will Get Dumped Here -->
-    <div id="buttons-view"></div>
-    <form id="animals-form">
-      <!-- <label for="animals-input">Add an animal!</label><br> -->
-      <input type="text" id="animal-input" placeholder="Type an animal name"><br>
-      <!-- Button triggers new animal to be added -->
-      <input id="add-animal" type="submit" value="Add">
-    </form>
+  <h1>GifyTastic</h1>
+  <div class="wrapper">
+    <div class="container">
+      <!-- Buttons will be added here -->
+      <div id="buttons-view"></div>
+      <form id="animals-form">
+        <label for="animals-input" id="addlabel">Add an animal!</label><br>
+        <input type="text" id="animal-input" placeholder="Type an animal name">
+        <!-- Button triggers new animal to be added -->
+        <input id="add-animal" type="submit" value="Add">
+      </form>
 
-    <div class="col-md-12">
-      <div class="row">
-        <div class="column">
-          <div id="gifs-appear-here" class="gal">
+      <div class="col-md-12">
+        <div class="row">
+          <div class="column">
+            <div id="gifs-appear-here" class="gal">
+            </div>
+
           </div>
 
+
         </div>
-
-
       </div>
     </div>
 
@@ -160,7 +185,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript">
     // Initial array of animals
-    let animals = ["cute cat", "cute birds", "cute frog"];
+    let animals = ["Cat", "Turtle", "Frog", "Dog", "Turkey", "Bear", "Lion", "Panda", "Pig"];
     // Function for dumping the JSON content for each button into the div
 
     function displayGify(evt) {
@@ -173,8 +198,16 @@
 
       // let queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=trilogy";
 
+
       let queryURL = "https://api.giphy.com/v1/gifs/search?api_key=9L6z6nm2Tcgeb0fAdLw33tIxNChdn84I&q=" + animal +
-        "&limit=5&offset=2&rating=G&lang=en"
+        "&limit=5&offset=0&rating=G&lang=en"
+
+
+
+
+
+
+
 
       $.ajax({
         url: queryURL,
@@ -202,7 +235,8 @@
           animalImage.attr("src", results[i].images.fixed_height.url);
           // animalImage.attr("src", results[i].images.fixed_height_still.url);
 
-          let still = animalImage.attr("src", results[i].images.fixed_height_still.url);
+          // let still = animalImage.attr("src", results[i].images.fixed_height_still.url);
+          let still = animalImage.attr("src", results[i].images.fixed_width_still.url);
 
           $("#gifs-appear-here").append(still);
           $("#gifs-appear-here").append(p);

@@ -28,14 +28,14 @@
 
     .wrapper {
       width: 100%;
-      max-width: 980px;
       height: 1200px;
       background: rgb(233, 235, 245);
       margin: 0 auto;
     }
 
     .container {
-      width: 70%;
+      width: 100%;
+      max-width: 980px;
       height: 1200px;
       text-align: center;
       vertical-align: middle;
@@ -59,19 +59,13 @@
     button {
       font-weight: 500;
       padding: 20px 39px;
-      width: 120px;
+      width: 180px;
       text-align: center;
       display: table-cell;
       vertical-align: middle;
       margin-right: 10px;
       margin-bottom: 10px;
       background-color: rgb(154, 203, 233);
-    }
-
-    .btn-outline-info {
-      color: rgb(5, 5, 17);
-      border-color: rgb(5, 5, 17);
-
     }
 
     #addlabel {
@@ -85,12 +79,7 @@
       margin-top: 0;
       width: 60%;
       height: 60px;
-      padding: 30px;
-    }
-
-    input {
-      border: none;
-      padding: 3px;
+      padding: 26px 30px;
     }
 
     #add-animal {
@@ -105,7 +94,7 @@
     }
 
     /* Cited: https://bootsnipp.com/snippets/p1qAD */
-    /* The following image grid makes responsive masonry gallery */
+    /* The following css makes responsive masonry gallery */
     .gal {
       -webkit-column-count: 3;
       /* Chrome, Safari, Opera */
@@ -161,19 +150,15 @@
 
       <form id="animals-form">
         <label for="animals-input" id="addlabel">Add an animal!</label><br>
-        <input type="text" id="animal-input" placeholder="Type an animal name">
+        <input type="text" id="animal-input" placeholder="Type a new animal">
         <!-- Button triggers new animal to be added -->
         <input id="add-animal" type="submit" value="Add">
       </form>
 
       <div class="row">
-        <div class="col-md-12 column">
-          <!-- <div class="column"> -->
 
-          <div id="gifs-appear-here" class="gal">
-          </div>
+        <div id="gifs-appear-here" class="col-md-12 column gal"></div>
 
-        </div>
       </div>
     </div>
   </div>
@@ -181,7 +166,7 @@
   <!-- Script -->
   <script type="text/javascript">
     // Initial array of animals
-    let animals = ["Cat", "Turtle", "Frog", "Dog", "Turkey", "Bear", "Lion", "Panda", "Pig"];
+    let animals = ["Cat", "Raccoon", "Frog", "Moose", "Turkey", "Dolphin", "Lion", "Panda", "Pig"];
 
     // Function for dumping the JSON content for each button into the div
     function displayGify(evt) {
@@ -216,7 +201,7 @@
           $("#gifs-appear-here").append(p);
 
           //Cited:https://stackoverflow.com/questions/44298501/how-to-pause-and-start-gif-using-jquery-ajax
-          //Line 218-230 pause and play gif
+          ///The line 205-214 pauses and plays gif
           $('body').on('click', '.gif', function () {
             var src = $(this).attr("src");
             if ($(this).hasClass('playing')) {
@@ -236,7 +221,7 @@
     // Function for displaying animal data
     function renderButtons() {
       // Deleting the buttons prior to adding new animals
-      // (this is necessary otherwise you will have repeat buttons)
+      // (this is necessary otherwise I will have repeat buttons)
       $("#buttons-view").empty();
       // Looping through the array of animals
       for (let i = 0; i < animals.length; i++) {

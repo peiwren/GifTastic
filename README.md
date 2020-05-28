@@ -1,6 +1,6 @@
 
 ### `GifTastic`
-It is a Gif search app. The users can search recipes, view the recipe source page and youtube video.
+This is a Gif search app. Once enter a fav animal and submit, the app will populate with gifs of your choice.
 
 ### `Technology Used:`
-HTML, CSS, MongoDB, Express JS, Node JS, React, Heroku
+HTML, CSS, JS, GIPHY API

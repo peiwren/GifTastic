@@ -1,5 +1,5 @@
 
-### `GifTastic APP`
+### `GifTastic`
 This is a fun gif search app. Once enter a fav animal name and submit, the app will populate with gifs of your choice.
 
 ### `Technology Used:`

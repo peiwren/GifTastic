@@ -4,3 +4,5 @@ This is a fun gif search app. Once enter a fav animal name and submit, the app w
 
 ### `Technology Used:`
 HTML, CSS, JS, GIPHY API
+
+GIPHY API end point: 

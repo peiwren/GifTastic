@@ -8,7 +8,7 @@ HTML, CSS, JS
 GIPHY API Search Endpoint: api.giphy.com/v1/gifs/search
 
 ### `How The App Works`
--Front screen with blank input field
+-Front screen with the input field
 <img src="http://peiwren.com/gify1.jpg">
 
 -Type a new fav animal in the input field and click add for adding a new button 

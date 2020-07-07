@@ -10,8 +10,10 @@ GIPHY API Search Endpoint: api.giphy.com/v1/gifs/search
 ### `How The App Works`
 -Front screen with the blank input field
 <img src="http://peiwren.com/gify1.jpg">
+
 -Add a new fav animal button, type in the input field and click submit
 <img src="http://peiwren.com/gify2.jpg">
+
 -Click on the button, display all available images
 <img src="http://peiwren.com/recipe3.jpg">
 

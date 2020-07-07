@@ -8,14 +8,14 @@ HTML, CSS, JS
 GIPHY API Search Endpoint: api.giphy.com/v1/gifs/search
 
 ### `How The App Works`
--Front screen with the blank input field
+-Front screen with blank input field
 <img src="http://peiwren.com/gify1.jpg">
 
--Add a new fav animal button, type in the input field and click add
+-Type a new fav animal in the input field and click add for adding a new button 
 <img src="http://peiwren.com/gify2.jpg">
 <img src="http://peiwren.com/gify3.jpg">
 
--Click on the button, display all available images
+-Click on the button, display all available images, click on the static image, will display the anmimated one
 <img src="http://peiwren.com/gifyani.jpg">
 
 

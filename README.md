@@ -13,9 +13,10 @@ GIPHY API Search Endpoint: api.giphy.com/v1/gifs/search
 
 -Add a new fav animal button, type in the input field and click add
 <img src="http://peiwren.com/gify2.jpg">
+<img src="http://peiwren.com/gify3.jpg">
 
 -Click on the button, display all available images
-<img src="http://peiwren.com/gify3.jpg">
+<img src="http://peiwren.com/gifyani.jpg">
 
 
 ### `To Access The App Please Follow The Link`

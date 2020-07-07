@@ -23,4 +23,4 @@ GIPHY API Search Endpoint: api.giphy.com/v1/gifs/search
 https://peiwren.github.io/GifTastic/
 
 ### `Description`
-Use the GIPHY API to make a dynamic app that populates with gifs of the user's choice. Finish by calling the GIPHY API and using JavaScript and jQuery to change the HTML of the app.
+Use the GIPHY API to make this dynamic app that populates with gifs of the user's choice. Finish by calling the GIPHY API and using JavaScript and jQuery to change the HTML of the app.

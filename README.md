@@ -1,16 +1,16 @@
 
 ### `GifTastic`
-This is a fun gif search app. Once enter a fav animal name and submit, the app will populate with gifs of your choice.
+This is a playful app. When the page loads there will be some buttons, each with unique animal names. The user can add any fav animal in the input field. When hitting the add button, a new button will be created with the name the user inputed. when clicking on each button, all the available static images of the user's choice will be displayed. If the user keeps clicking on the static images, the animated Gifs will be displayed, and vice versa.
 
-### `Technology Used:`
+### `Technology Used`
 HTML, CSS, JS
 
 GIPHY API Search Endpoint: api.giphy.com/v1/gifs/search
 
 ### `How The App Works`
--Front screen with the search field
+-Front screen with the blank field
 <img src="http://peiwren.com/gify1.jpg">
--If you want to add a new fav animal in the field and click submit to add a new button for this animal
+-To add a new fav animal buttonin, type in the field and click submit
 <img src="http://peiwren.com/gify2.jpg">
 -Click on the button
 <img src="http://peiwren.com/recipe3.jpg">
@@ -18,3 +18,6 @@ GIPHY API Search Endpoint: api.giphy.com/v1/gifs/search
 
 ### `To Access The App Please Follow The Link`
 https://peiwren.github.io/GifTastic/
+
+### `The flow`
+Use the GIPHY API to make a dynamic web page that populates with gifs of your choice. Finish by calling the GIPHY API and using JavaScript and jQuery to change the HTML of your site.
